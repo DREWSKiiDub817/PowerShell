@@ -44,7 +44,7 @@
   - **User** - User-defined variables
   - **Automatic** - PowerShell variables
   - **Preference** - User preference variables
- - **Data Type**
+- **Data Type**
   - Type of Value within a variable
 ```PowerShell
 # read variables
@@ -94,3 +94,23 @@ $date = Get-Date
 "$g $d, $n! Today is $($date.DayOfWeek)."
 
 ```
+
+## Operators
+- **Arithmetic Operators**
+  - **+** Adds values, concatenates strings
+  - **-** Subtracts values
+  - **\*** Multiply values, copy strings
+  - **/** Divides values
+  - **%** Modulus (remainder of values)
+- **Assignment Operators**
+  - **=** Set variable to value
+  - **+=** Increase variable by value
+  - **-=** Decrease variable by value
+  - **\*=** Multiplies variable by value
+  - **/=** Divides variable by value
+  - **%=** Divides variable assigns modulus
+- **Comparison Operators**
+  - **-eq** Equals
+  - **-ne** Not equals
+
+   
