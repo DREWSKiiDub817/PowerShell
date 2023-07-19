@@ -97,20 +97,88 @@ $date = Get-Date
 
 ## Operators
 - **Arithmetic Operators**
-  - **+** Adds values, concatenates strings
-  - **-** Subtracts values
-  - **\*** Multiply values, copy strings
-  - **/** Divides values
-  - **%** Modulus (remainder of values)
+  - **+** .... Adds values, concatenates strings
+  - **-** .... Subtracts values
+  - **\*** .... Multiply values, copy strings
+  - **/** .... Divides values
+  - **%** .... Modulus (remainder of values)
 - **Assignment Operators**
-  - **=** Set variable to value
-  - **+=** Increase variable by value
-  - **-=** Decrease variable by value
-  - **\*=** Multiplies variable by value
-  - **/=** Divides variable by value
-  - **%=** Divides variable assigns modulus
+  - **=** .... Set variable to value
+  - **+=** .... Increase variable by value
+  - **-=** .... Decrease variable by value
+  - **\*=** .... Multiplies variable by value
+  - **/=** .... Divides variable by value
+  - **%=** .... Divides variable assigns modulus
 - **Comparison Operators**
-  - **-eq** Equals
-  - **-ne** Not equals
-
+  - **-eq** .... Equals
+  - **-ne** .... Not equals
+  - **-gt** .... Greater than
+  - **-lt** .... Less than
+  - **-le** .... Less than or equal
+  - **-ge** .... Greater than or equal
+  - **-like** .... True when string matches
+  - **-notlike** .... False when string matches
+  - **-is** .... True if object is the same
+  - **-isnot** .... True if objects are different
    
+   ```PowerShell
+   ## comparison operator
+   Get-Process | 
+      Where-Object { $_.WorkingSet -gt 100MB}
+   ```
+## Logical Operators
+   - **-and** .... True when both conditions are true
+   - **-or** .... True when either conditions are true
+   - **-not** .... Negates a statement
+   - **!** .... Same as -not
+      ```PowerShell
+      ## Logical operator
+      Get-Process | 
+         Where-Object { $_.WorkingSet -gt 100MB -and $_.WorkingSet -lt 200MB }
+      ```
+
+## Redirection Operators
+   - **>** .... Send stream to a file
+   - **>>** .... Append stream to a file
+   - ***n*>&1** .... Redirects *n* to success stream
+      ```PowerShell
+      ## Redirection operator
+      Get-Service -Name *win* > .\win-services.txt
+      ```
+
+## Split/Join Operators
+   - **-split** .... Splits string into substrings
+   - **-join** .... Concatenates strings together
+      ```PowerShell
+      ## Split operator
+      -split "powershell 7 rocks!"
+      ## join operator
+      -join ("c:", "\", "Nuggetlab")
+      ```
+## Type Operators
+   - **-is** .... True if .NET types are the same
+   - **-isnot** .... True is .NET types are different
+   - **-as** .... Converts to a .NET type
+      ```PowerShell
+      ## type operator
+      # returns true
+      (Get-Item -Path "C:\Nuggetlab") -is [System.IO.DirecotryInfo]
+      # converts string to datetime
+      "01/01/2020" -as [DateTime]
+      ```
+## Special Operator
+   - **$()** .... Subexpression operator
+   - **@()** .... Array subexpression operator
+   - **&** .... Call operator
+   - **::** .... Static member operator
+   - **?:** .... Ternary operator
+   - **??** .... Null-coalescing operator
+   - **?.** .... Null-conditional operator
+      ```PowerShell
+      ## special operator
+      # subexpression operator
+      "Today is $(Get-Date)"
+      # call operator
+      $datecommand = "Get-Date"
+      & $datecommand
+      ```
