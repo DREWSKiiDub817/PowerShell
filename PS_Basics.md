@@ -1,3 +1,4 @@
+
 # PowerShell Basics
 
 ## PowerShell Components
@@ -38,3 +39,22 @@
   - CodeMethod - Method written in .NET
 
 ## Variables and Data Types
+- **Variables** 
+  - store information
+  - command results
+  - **User** - User-defined variables
+  - **Automatic** - PowerShell variables
+  - **Preference** - User preference variables
+ - **Data Type**
+  - Type of Value within a variable
+```PowerShell
+# read variables
+$num
+$string
+$object
+
+# view data types
+$num.GetType().Name
+$string.GetType().Name
+$object.GetType().Name
+```
