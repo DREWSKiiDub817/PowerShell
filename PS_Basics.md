@@ -57,4 +57,26 @@ $object
 $num.GetType().Name
 $string.GetType().Name
 $object.GetType().Name
+
+# explicit data type
+[int]$num2 = 2
+$num2 = "string"
+
+# array
+$arr = 1,2,3,"four",(Get-Item C:\Users\andrew.e.ara\Desktop)
+$arr
+$arr[1]
+$arr[2,3]
+
+# hashtable
+$ht = @{1="one";2="two";3="three"}
+$ht
+$ht.1
+
+# variables cmdlets
+Get-Variable
+New-Variable -Name "computer" -Value (Get-ADComputer -Identity "FS-NUG")
+$computer
+Get-Variable -Name "computer"
+Remove=Variable -Name "computer"
 ```
