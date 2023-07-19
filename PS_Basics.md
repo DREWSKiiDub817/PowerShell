@@ -1,4 +1,3 @@
-
 # PowerShell Basics
 
 ## PowerShell Components
@@ -79,4 +78,19 @@ New-Variable -Name "computer" -Value (Get-ADComputer -Identity "FS-NUG")
 $computer
 Get-Variable -Name "computer"
 Remove=Variable -Name "computer"
+
+# define variables
+$g = "Good"
+$d = "day"
+$n = "drewskiidub"
+$date = Get-Date
+
+# single quotes (literal)
+'$g $d, $n! Today is $date.'
+
+# double quotes (evaluated)
+"$g $d, $n! Today is $date."
+# sub expression
+"$g $d, $n! Today is $($date.DayOfWeek)."
+
 ```
