@@ -182,3 +182,31 @@ $date = Get-Date
       $datecommand = "Get-Date"
       & $datecommand
       ```
+## Putting it all Together!
+
+```PowerShell
+#### Get-MachineStats.ps1 ####
+
+# ask for server name, store it in a variable
+$server = Read-Host -Prompt "Enter a server name (localhost is default)"
+
+# if no server name was entered, set the cariable to localhost
+if ($server -eq "") {
+      $server = "localhost"
+}
+
+# gather server stats
+$os = Get-CimInstance Win32_OperatingSystem -ComputerName $server
+$memTotal = [math]::Round($os.TotalVisibleMemorySize / 1MB, 2)
+$memAvailable = [math]::Round($os.FreePhysicalMemory / 1MB, 2)
+
+# write stats to host
+Write-Host "Stats for $server" -ForegroundColor Green
+Write-Host ('-' * 25)
+Write-Host "Total Memory      : $memTotal GB"
+Write-Host "Available Memory  : $memAvailable GB"
+Write-Host "Used Memory       : $($memTotal - $memAvailable) GB"
+Write-Host "Operating System  : $($os.Caption)"
+Write-Host "System Drive      : $($os.SystemDrive)\"
+
+```
