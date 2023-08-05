@@ -62,5 +62,37 @@ Get-ChildItem -Path $dir -File |
             Select-Object -Property Name, Count
 ```
 ## Where-Object
+
+```PowerShell
+# view help topic for Where-Object 
+Get-Help Where-Object
+
+# store path in variable
+$dir = "C:\Users\andre\OneDrive\Pictures"
+
+# basic examples
+Get-ChildItem -Path $dir -File | Where-Object -Property Extension -eq ".png"
+Get-ChildItem -Path $dir -File | Where-Object Name -like "*pg*"
+Get-ChildItem -Path $dir -File | Where-Object -FilterScript {$_.Extension -eq ".jpg" -and $_.Name -like "*tee*"}
+Get-ChildItem -Path $dir -File | ? {$_.Extension -eq ".jpg" -and $_.Name -like "*tee*"}
+
+# all files bigger than 500kb
+Get-ChildItem -Path $dir -File |
+    Where-Object -Property Length -gt 500KB |
+        Sort-Object -Property Length -Descending |
+            Select-Object Name, Length
+
+# jpg files create today
+Get-ChildItem -Path $dir -File |
+    Where-Object -FilterScript {$_.Extension -eq ".png" -and $_.LastWriteTime -gt [datetime]::Today} |
+        Select-Object Name, LastWriteTime, CreationTime, Length | 
+            Sort-Object LastWriteTime -Descending | 
+                Format-Table -AutoSize
+
+# make 10 dummy files
+foreach ($item in 1..10) {
+    New-Item -Path "$dir$((Get-Random 100000).ToString()).png"
+}
+```
 ## Pipeline Chain Operators
 ## Pipeline Challenges
