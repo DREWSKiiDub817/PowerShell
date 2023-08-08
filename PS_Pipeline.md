@@ -95,4 +95,29 @@ foreach ($item in 1..10) {
 }
 ```
 ## Pipeline Chain Operators
+```PowerShell
+# help topic
+Get-Help about_Pipeline_Chain_Operators
+
+# simple example
+Write-Output "Left" && Write-Output "Right" # if left succeeds, execute right
+Write-Output "Left" || Write-Output "Right" # if left fails, execute right
+
+# without pipeline chain operators
+$path= ".\servers.txt"
+
+If (-Not (Test-Path -Path $path)) {
+    New-Item -Path $path -ItemType File
+    @('DC-NUG', 'FS-NUG', 'SQL-NUG') | Out-File -Path $path
+}
+
+# with pipeline chain operator
+Get-Item -Path $path || New-Item -Path $path -ItemType File
+
+# all the operators!
+Get-Item -Path $path ||
+    New-Item -Path $path -ItemType File &&
+        @('DC-NUG', 'FS-NUG', 'SQL-NUG') | 
+            Out-File -Path $path
+```
 ## Pipeline Challenges
